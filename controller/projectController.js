@@ -2,15 +2,15 @@ const client = require("../client");
 
 exports.getAll = (req, res) => {
     client
-        .query("SELECT * FROM users")
+        .query("SELECT * FROM projects")
         .then((data) => res.json(data.rows))
         .catch((e) => console.log(e));
 }
 
 exports.getOne =  (req, res, next) => {
-    const { user_id } = req.params;
+    const { project_id } = req.params;
     client
-        .query("SELECT * FROM users WHERE user_id=$1", [user_id])
+        .query("SELECT * FROM projects WHERE project_id=$1", [project_id])
         .then((data) => res.json(data.rows))
         .catch((e) => console.log(e));  
 };

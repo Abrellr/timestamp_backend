@@ -1,0 +1,20 @@
+//get all users
+GET http://localhost:3000/users/
+
+###
+// get one user
+GET http://localhost:3000/users/2
+
+###
+//get all projects
+GET http://localhost:3000/projects/
+
+###
+//get one project
+GET http://localhost:3000/projects/10
+
+
+###
+//get all tasks
+GET http://localhost:3000/tasks/
+
