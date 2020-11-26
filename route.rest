@@ -1,0 +1,106 @@
+//get all users
+GET http://localhost:3000/users/
+
+###
+// get one user
+GET http://localhost:3000/users/5
+
+###
+//create one user
+POST http://localhost:3000/users 
+Content-Type: application/json
+
+{
+    "username": "EricDylan",
+    "email": "ericdylan@web.de",
+    "password": "3ricl0v3"
+}
+
+###
+//update the user
+PUT http://localhost:3000/users/6
+Content-Type: application/json
+
+{
+    "user_id": 6,
+    "username": "EricAbrell",
+    "email": "ericabrell@web.de",
+    "password": "ericl0v3"
+}
+###
+
+//delete the user
+DELETE http://localhost:3000/users/4
+
+###
+//get all projects
+GET http://localhost:3000/projects/
+
+###
+//get one project
+GET http://localhost:3000/projects/10
+
+###
+//create one project
+POST http://localhost:3000/projects
+Content-Type: application/json
+
+{
+    "user_id": 2,
+    "project_name": "April",
+    "project_create_at": "2021/02/10"
+}
+
+###
+//update project
+PUT http://localhost:3000/projects/10
+Content-Type: application/json
+
+{
+    "project_id": 10,
+    "user_id": 2,
+    "project_name": "Oktober",
+    "project_create_at": "2020/10/23"
+}
+
+###
+//get all tasks
+GET http://localhost:3000/tasks/
+
+###
+//get one task
+GET http://localhost:3000/tasks/100
+
+###
+//create one task
+POST http://localhost:3000/tasks
+Content-Type: application/json
+
+{
+    "project_id": 20,
+    "task_name": "create routes",
+    "task_create_at": "2020/11/24",
+    "start_time": "2020/11/24 10:00",
+    "end_time": "2020/11/24 16:00",
+    "break_time": 30,
+    "total_time": 6
+}
+
+###
+//update one task
+PUT http://localhost:3000/tasks/100
+Content-Type: application/json
+
+{
+    "project_id": 10,
+    "task_name": "create wireframe with mockflow",
+    "task_create_at": "2020/11/24 00:00",
+    "start_time": "2020/11/24 09:00",
+    "end_time": "2020/11/24 18:00",
+    "break_time": 30,
+    "total_time": 9,
+    "task_id": 100
+}
+
+###
+DELETE http://localhost:3000/tasks/135
