@@ -77,9 +77,8 @@ POST http://localhost:3000/tasks
 Content-Type: application/json
 
 {
-    "task_id": 100,
     "project_id": 20,
-    "task_name": "create login input",
+    "task_name": "create routes",
     "task_create_at": "2020/11/24",
     "start_time": "2020/11/24 10:00",
     "end_time": "2020/11/24 16:00",
@@ -93,12 +92,15 @@ PUT http://localhost:3000/tasks/100
 Content-Type: application/json
 
 {
-    "task_id": 100,
     "project_id": 10,
     "task_name": "create wireframe with mockflow",
-    "task_create_at": "2020/11/24",
+    "task_create_at": "2020/11/24 00:00",
     "start_time": "2020/11/24 09:00",
     "end_time": "2020/11/24 18:00",
     "break_time": 30,
-    "total_time": 9
+    "total_time": 9,
+    "task_id": 100
 }
+
+###
+DELETE http://localhost:3000/tasks/135

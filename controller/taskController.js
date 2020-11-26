@@ -40,7 +40,7 @@ exports.updateTask = (req, res, next) => {
     const { task_id } = req.params;
     const { project_id, task_name, task_create_at, start_time, end_time, break_time, total_time } = req.body;
 
-    if(!!project_id || !task_name || !task_create_at || !start_time || !end_time || !break_time || !total_time ) return res.send('update task controller gone bad');
+    if(!project_id || !task_name || !task_create_at || !start_time || !end_time || !break_time || !total_time ) return res.send('update task controller gone bad');
 
     const sqlQuery = `
     UPDATE tasks
