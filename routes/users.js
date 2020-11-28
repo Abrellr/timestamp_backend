@@ -6,7 +6,7 @@ const userMiddleware = require('../middlewares/userMiddleware');
 /* GET, POST, PUT, DELETE requests */
 userRouter.get('/', userController.getAll) 
 userRouter.get('/:user_id', userMiddleware.checkUser, userController.getOne)
-userRouter.post('/', userController.createUser)
+userRouter.post('/', userMiddleware.checkNewUser, userController.createUser)
 userRouter.put('/:user_id', userMiddleware.checkUser, userController.updateUser)
 userRouter.delete('/:user_id', userMiddleware.checkUser, userController.deleteUser)
 

@@ -11,7 +11,7 @@ POST http://localhost:3000/users
 Content-Type: application/json
 
 {
-    "username": "EricDylan",
+    "username": "DominikLove",
     "email": "ericdylan@web.de",
     "password": "3ricl0v3"
 }
@@ -30,7 +30,7 @@ Content-Type: application/json
 ###
 
 //delete the user
-DELETE http://localhost:3000/users/4
+DELETE http://localhost:3000/users/9
 
 ###
 //get all projects
