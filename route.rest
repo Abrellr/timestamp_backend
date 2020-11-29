@@ -3,7 +3,7 @@ GET http://localhost:3000/users/
 
 ###
 // get one user
-GET http://localhost:3000/users/5
+GET http://localhost:3000/users/2
 
 ###
 //create one user
@@ -37,8 +37,13 @@ DELETE http://localhost:3000/users/9
 GET http://localhost:3000/projects/
 
 ###
-//get one project
+//get one project based on project_id
 GET http://localhost:3000/projects/10
+
+###
+//get projects from one user_id
+GET http://localhost:3000/projects/2
+
 
 ###
 //create one project

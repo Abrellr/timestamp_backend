@@ -18,6 +18,16 @@ exports.getOne =  (req, res, next) => {
         .catch((e) => console.log(e));  
 };
 
+//Right JOIN clause User and Project
+
+exports.rightJoinProject = (req, res, next) => {
+    const { user_id, project_id } = req.params
+    client  
+        .query("SELECT * FROM projects RIGHT JOIN projects ON projects.user_id = users.user_id WHERE user_id=$1 RETURNING *", [user_id])
+        .then((data) => console.log(data.rows))
+        .catch((e) => console.log('join failed'));
+}
+
 //create one project
 exports.createOne = (req, res, next) => {
     const { user_id, project_name, project_create_at } = req.body;
