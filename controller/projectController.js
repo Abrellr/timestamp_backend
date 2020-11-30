@@ -18,6 +18,28 @@ exports.getOne =  (req, res, next) => {
         .catch((e) => console.log(e));  
 };
 
+
+//get all projects from one specific user
+exports.rightJoinProject = (req, res, next) => {
+    console.log('hey ho')
+    const { user_id } = req.params
+
+    const sqlQuery = `
+    SELECT * 
+    FROM users u
+    RIGHT JOIN projects p
+    ON p.user_id = u.user_id 
+    WHERE u.user_id=$1
+    `
+
+    const parameters = [user_id]
+
+    client  
+        .query(sqlQuery, parameters)
+        .then((data) => res.send(data.rows))
+        .catch((e) => console.log(e.message));
+}
+
 //create one project
 exports.createOne = (req, res, next) => {
     const { user_id, project_name, project_create_at } = req.body;

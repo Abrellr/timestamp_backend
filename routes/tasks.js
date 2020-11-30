@@ -6,6 +6,7 @@ const taskMiddleware = require('../middlewares/taskMiddleware');
 /* GET users listing. */
 taskRouter.get('/', taskController.getAll) 
 taskRouter.get('/:task_id', taskMiddleware.checkTask, taskController.getOne)
+taskRouter.get('/project/:project_id', taskController.innerJoinTask)
 taskRouter.post('/', taskController.createTask)
 taskRouter.put('/:task_id', taskMiddleware.checkTask, taskController.updateTask)
 taskRouter.delete('/:task_id', taskMiddleware.checkTask, taskController.deleteTask)
