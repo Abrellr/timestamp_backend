@@ -18,14 +18,26 @@ exports.getOne =  (req, res, next) => {
         .catch((e) => console.log(e));  
 };
 
-//Right JOIN clause User and Project
 
+//get all projects from one specific user
 exports.rightJoinProject = (req, res, next) => {
-    const { user_id, project_id } = req.params
+    console.log('hey ho')
+    const { user_id } = req.params
+
+    const sqlQuery = `
+    SELECT * 
+    FROM users u
+    RIGHT JOIN projects p
+    ON p.user_id = u.user_id 
+    WHERE u.user_id=$1
+    `
+
+    const parameters = [user_id]
+
     client  
-        .query("SELECT * FROM projects RIGHT JOIN projects ON projects.user_id = users.user_id WHERE user_id=$1 RETURNING *", [user_id])
-        .then((data) => console.log(data.rows))
-        .catch((e) => console.log('join failed'));
+        .query(sqlQuery, parameters)
+        .then((data) => res.send(data.rows))
+        .catch((e) => console.log(e.message));
 }
 
 //create one project

@@ -10,4 +10,5 @@ userRouter.post('/', userMiddleware.checkNewUser, userController.createUser)
 userRouter.put('/:user_id', userMiddleware.checkUser, userController.updateUser)
 userRouter.delete('/:user_id', userMiddleware.checkUser, userController.deleteUser)
 
+
 module.exports = userRouter;

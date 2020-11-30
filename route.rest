@@ -34,7 +34,7 @@ DELETE http://localhost:3000/users/9
 
 ###
 //get all projects
-GET http://localhost:3000/projects/
+GET http://localhost:3000/projects
 
 ###
 //get one project based on project_id
@@ -42,7 +42,7 @@ GET http://localhost:3000/projects/10
 
 ###
 //get projects from one user_id
-GET http://localhost:3000/projects/2
+GET http://localhost:3000/projects/
 
 
 ###

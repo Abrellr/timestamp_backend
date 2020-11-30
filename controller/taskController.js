@@ -9,8 +9,7 @@ exports.getAll = (req, res) => {
         .catch((e) => console.log(e));
 }
 
-
-//get one task
+//get one task by task_id
 exports.getOne =  (req, res, next) => {
     const { task_id } = req.params;
     client
@@ -19,6 +18,38 @@ exports.getOne =  (req, res, next) => {
         .catch((e) => console.log(e));  
 };
 
+//get all tasks from one specific project_id
+exports.innerJoinTask = (req, res, next) => {
+    console.log('hey ho')
+    const { project_id } = req.params
+
+    const sqlQuery = `
+    SELECT 
+    u.username, 
+    p.project_name,
+    p.project_create_at,
+    t.task_name,
+    t.task_create_at,
+    t.start_time, 
+    t.end_time,
+    t.break_time,
+    t.total_time
+    FROM users u
+    INNER JOIN projects p
+    ON u.user_id = p.user_id
+    INNER JOIN tasks t
+    ON p.project_id = t.project_id 
+    WHERE t.project_id=$1
+    ORDER BY task_create_at;
+    `
+
+    const parameters = [project_id]
+
+    client  
+        .query(sqlQuery, parameters)
+        .then((data) => res.send(data.rows))
+        .catch((e) => console.log(e.message));
+}
 
 
 //create one task
