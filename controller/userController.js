@@ -77,4 +77,10 @@ exports.deleteUser = (req, res, next) => {
         })
 }
 
-
+//create token
+exports.createToken = function() {
+    const payload = { user_id: this.user_id, email: this.email}
+    const secretKey = process.env.JWT_SECRET
+    const token = jwt.sign(payload, secretKey, { expiresIn: "1h"})
+    return token
+}
