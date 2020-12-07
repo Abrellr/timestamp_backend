@@ -8,7 +8,7 @@ projectRouter.get('/', projectController.getAll)
 projectRouter.get('/:project_id', projectMiddleware.checkProject, projectController.getOne)
 projectRouter.get('/user/:user_id', projectController.rightJoinProject)
 projectRouter.post('/', projectController.createOne)
-projectRouter.put('/:project_id', projectMiddleware.checkProject, projectController.updateProject)
+projectRouter.put('/:project_id', projectController.updateProject)
 projectRouter.delete('/:project_id', projectMiddleware.checkProject, projectController.deleteProject)
 
 

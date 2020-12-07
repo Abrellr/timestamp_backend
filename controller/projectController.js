@@ -58,9 +58,9 @@ exports.createOne = (req, res, next) => {
 
 //update project
 exports.updateProject = (req, res, next) => {
-    const { project_id } = req.params;
+    const { project_id } = req.params;
     const { user_id, project_name, project_create_at } = req.body;
-    if(!project_name || !user_id  || !project_create_at ) return res.sendStatus(400)
+    if(!project_name || !user_id  || !project_create_at || !project_id ) return res.sendStatus(400)
 
     const sqlQuery = `
     UPDATE projects
@@ -82,12 +82,15 @@ exports.updateProject = (req, res, next) => {
 //delete project
 exports.deleteProject = (req, res, next) => {
     const { project_id } = req.params;
+    
     const sqlQuery = `
-    DELETE FROM projects
-    WHERE project_id=$1
+    DELETE FROM projects 
+    USING tasks
+    WHERE projects.project_id=$1
     RETURNING *
     `;
 
+    if(project_id) {
     client
         .query(sqlQuery, [project_id])
         .then((data) => res.json(data.rows))
@@ -95,6 +98,7 @@ exports.deleteProject = (req, res, next) => {
             res.sendStatus(500);
             console.log(err)
         })
+    }    
 }
 
 
