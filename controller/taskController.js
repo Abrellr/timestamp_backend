@@ -2,8 +2,16 @@ const client = require("../database/client");
 
 //get all tasks
 exports.getAll = (req, res) => {
+  const sqlQuery = `
+  SELECT task_name,  
+  start_time,
+  end_time, 
+  AGE(end_time, start_time) AS total_time
+  FROM tasks;
+`;
+
   client
-    .query("SELECT * FROM tasks")
+    .query(sqlQuery)
     .then((data) => res.json(data.rows))
     .catch((e) => console.log(e));
 };
@@ -23,24 +31,21 @@ exports.innerJoinTask = (req, res, next) => {
   const { project_id } = req.params;
 
   const sqlQuery = `
-    SELECT 
-    u.username,
-    p.project_id, 
-    p.project_name,
-    p.project_create_at,
-    t.task_id,
-    t.task_name,
-    t.start_time, 
-    t.end_time,
-    t.total_time,
-    AGE(t.end_time, t.start_time) AS total_time 
-    FROM users u
-    INNER JOIN projects p
-    ON u.user_id = p.user_id
-    INNER JOIN tasks t
-    ON p.project_id = t.project_id
-    WHERE t.project_id=$1
-    ORDER BY t.start_time;
+  SELECT 
+  p.project_id, 
+  p.project_name,
+  p.project_create_at,
+  t.task_id,
+  t.task_name,
+  t.start_time, 
+  t.end_time,
+  t.total_time,
+  AGE(t.end_time, t.start_time) AS total_time 
+  FROM projects p
+  INNER JOIN tasks t
+  ON p.project_id = t.project_id
+  WHERE t.project_id=$1
+  ORDER BY t.start_time;
     `;
 
   const parameters = [project_id];

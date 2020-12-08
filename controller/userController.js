@@ -1,5 +1,5 @@
 const client = require("../database/client");
-
+const jwt = require('jsonwebtoken')
 
 //get all user
 exports.getAll = (req, res) => {
