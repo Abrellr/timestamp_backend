@@ -85,8 +85,7 @@ exports.deleteProject = (req, res, next) => {
     
     const sqlQuery = `
     DELETE FROM projects 
-    USING tasks
-    WHERE projects.project_id=$1
+    WHERE project_id=$1
     RETURNING *
     `;
 
