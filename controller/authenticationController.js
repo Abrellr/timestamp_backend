@@ -4,7 +4,7 @@ const userController = require('./userController')
 exports.login = async (req, res) => {
     const { email, password } = req.body
 
-    let user = await userController.getOne({ email })
+    let user = await userController.getOne({ username })
     if (!username) return res.status(400).send('Invalid Credentials') // bad request
     const match = await bcrypt.compare(password, users.password)
     if (!match) return res.status(400).send('Invalid Credentials') // bad request
