@@ -1,5 +1,6 @@
+const client = require("../database/client");
 const bcrypt = require('bcrypt')
-const userController = require('./userController')
+
 
 exports.login = async (req, res) => {
     const { username, password } = req.body
@@ -10,19 +11,13 @@ exports.login = async (req, res) => {
     AND password=$2;
     `
     const values = [ username, password]
-
-    try {
-        const res = await client.query(sqlQuery, values)
-        console.log(res.rows[0])
-    } catch (err) {
-        console.log(err.stack)
-    }
+    const user = await client.query(sqlQuery, values)
+    if (!user) return res.status(400).send('Invalid Credentials') // bad request
+    const match = await bcrypt.compare(password, user.password)
+    if (!match) return res.status(400).send('Invalid Credentials') // bad request
+    const token = user.createToken()
+    res.set('x-authorization-token', token).send("Login successful!")
     
 }
 
-// let user = await userController.getOne({ username })
-//     if (!username) return res.status(400).send('Invalid Credentials') // bad request
-//     const match = await bcrypt.compare(password, users.password)
-//     if (!match) return res.status(400).send('Invalid Credentials') // bad request
-//     const token = user.createToken()
-//     res.set('x-authorization-token', token).send("Login successful!")
+    
