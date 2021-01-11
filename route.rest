@@ -1,29 +1,29 @@
 //get all users
-GET http://localhost:3000/users/
+GET http://localhost:5000/users/
 
 ###
 // get one user
-GET http://localhost:3000/users/2
+GET http://localhost:5000/users/2
 
 ###
 //create one user
-POST http://localhost:3000/users 
+POST http://localhost:5000/users 
 Content-Type: application/json
 
 {
-    "username": "DominikLove",
+    "username": "DominikL",
     "email": "ericdylan@web.de",
     "password": "3ricl0v3"
 }
 
 ###
 //update the user
-PUT http://localhost:3000/users/6
+PUT http://localhost:5000/users/21
 Content-Type: application/json
 
 {
-    "user_id": 6,
-    "username": "EricAbrell",
+    "user_id": 21,
+    "username": "EricA",
     "email": "ericabrell@web.de",
     "password": "ericl0v3"
 }
